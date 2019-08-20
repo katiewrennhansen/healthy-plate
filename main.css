@@ -1,0 +1,67 @@
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+header {
+    background-color: rgb(71, 231, 116);
+    margin: 0;
+    padding: 50px;
+    /* position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0; */
+}
+
+h1 {
+    font-size: 50px;
+    font-family: 'Dancing Script', sans-serif;
+}
+
+section {
+    width: 80%;
+    margin: 0 auto;
+    /* margin-top: 300px; */
+}
+
+ul {
+    padding: 0;
+}
+
+
+li {
+    margin: 20px 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.recipe {
+    display: flex;
+    background: rgb(220, 220, 220);
+    border-radius: 2px;
+    padding: 10px;
+}
+
+.recipe img {
+    width: 120px;
+    margin-right: 40px;
+}
+
+.title a {
+    font-size: 25px
+}
+
+.source {
+    font-style: italic;
+}
+

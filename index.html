@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Healthy Plate</title>
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+    <h1>Healthy Plate</h1>
+
+    <h2>Search for a food</h2>
+    <form id="js-food-search">
+        <input id="js-food" type="text" placeholder="search food">
+        <label for="health-options">Add a dietary restriction</label>
+        <select id="js-health" name="health-options">
+            <option value="" selected="selected">None</option>
+            <option value="vegan">Vegan</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="tree-nut-free">Tree Nut Free</option>
+            <option value="peanut-free">Peanut Free</option>
+            <option value="sugar-conscious">Sugar Conscious (&lt;4g sugar per serving)</option>
+            <option value="alcohol-free">Alcohol Free</option>
+        </select>
+        <input type="submit">
+    </form>
+    </header>
+
+    <section>
+        <h2>Recipies</h2>
+        <ul class="results-list" id="js-results-list"></ul>
+    </section>
+
+
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="index.js"></script>
+</body>
+</html>
