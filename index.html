@@ -40,19 +40,21 @@
     <section class="recipes">
         <div class="widget">
         <h3>Recipies</h3>
-        <form id="dietary-submit">
-            <label for="health-options">Add a dietary restriction</label>
-            <select id="js-health" name="health-options">
-                <option value="" selected="selected">None</option>
-                <option value="vegan">Vegan</option>
-                <option value="vegetarian">Vegetarian</option>
-                <option value="tree-nut-free">Tree Nut Free</option>
-                <option value="peanut-free">Peanut Free</option>
-                <option value="sugar-conscious">Sugar Conscious (&lt;4g sugar per serving)</option>
-                <option value="alcohol-free">Alcohol Free</option>
+        <form id="js-recipe-submit">
+                <label for="current-value">Showing Recipes for: </label>
+                <input id="js-recipe-food" type="text" name="current-value" value="">
+                <label for="health-options">Add a dietary restriction</label>
+                <select id="js-health" name="health-options">
+                    <option value="" selected="selected">None</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="tree-nut-free">Tree Nut Free</option>
+                    <option value="peanut-free">Peanut Free</option>
+                    <option value="sugar-conscious">Sugar Conscious (&lt;4g sugar per serving)</option>
+                    <option value="alcohol-free">Alcohol Free</option>
+                </select>
                 <input type="submit">
-            </select>
-        </form>
+            </form>
         <ul class="results-list" id="js-results-list"></ul>
         </div>
     </section>

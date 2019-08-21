@@ -65,7 +65,7 @@ function makeNutrientHtml(responseJson){
     $('#js-results-nutrition').empty();
 
     const nutrient = responseJson.report.food.nutrients;
-    console.log(nutrient);
+
     $('#js-results-nutrition').append(`
         <tr>
             <th>Nutrient per ${nutrient[0].measures[0].label}</th>
@@ -85,24 +85,12 @@ function makeNutrientHtml(responseJson){
 
 
 //make html for recipe data
-function makeRecipeHtml(responseJson){
+function makeRecipeHtml(responseJson, item){
     $('#js-results-list').empty();
-
     const food = responseJson.hits;
 
     // $('#js-results-list').append(`
-    // <form>
-    //     <label for="health-options">Add a dietary restriction</label>
-    //     <select id="js-health" name="health-options">
-    //         <option value="" selected="selected">None</option>
-    //         <option value="vegan">Vegan</option>
-    //         <option value="vegetarian">Vegetarian</option>
-    //         <option value="tree-nut-free">Tree Nut Free</option>
-    //         <option value="peanut-free">Peanut Free</option>
-    //         <option value="sugar-conscious">Sugar Conscious (&lt;4g sugar per serving)</option>
-    //         <option value="alcohol-free">Alcohol Free</option>
-    //     </select>
-    // </form>`);
+    // `);
 
     for (let i = 0; i < 10; i++){
         $('#js-results-list').append(`<li class="recipe">
@@ -115,10 +103,6 @@ function makeRecipeHtml(responseJson){
         </li>`);
     }
 }
-
-
-
-
 
 
 //FETCH DATA FROM APIS
@@ -162,13 +146,10 @@ function fetchNutrientNumber(food){
     const formatted = formatParams(params);
     const url = ndb.baseUrl + '?' + formatted;
 
-    console.log(url);
-
     fetch(url)
         .then(response => response.json())
         .then(responseJson => {
             const ndbno = responseJson.list.item[0].ndbno;
-            console.log(ndbno);
             fetchNutrientData(ndbno);
         })
         .catch(err => console.log(err));
@@ -176,8 +157,6 @@ function fetchNutrientNumber(food){
 
 //fetch nutrient data
 function fetchNutrientData(ndbno){
-
-    console.log(ndbno);
     const params = {
         ndbno: ndbno,
         format: 'json',
@@ -191,7 +170,6 @@ function fetchNutrientData(ndbno){
     fetch(url)
         .then(response => response.json())
         .then(responseJson => {
-            console.log(responseJson);
             makeNutrientHtml(responseJson);
         })
         .catch(err => console.log(err));
@@ -200,7 +178,40 @@ function fetchNutrientData(ndbno){
 
 
 //fetch recipe data
+
 function fetchData(food, restriction){
+    let params = {};
+
+    if (restriction = 'none') {
+        params = {
+            q: food,
+            app_id: edamam.appId,
+            app_key: edamam.apiKey
+        }
+    } else {
+        params = {
+            q: food,
+            app_id: edamam.appId,
+            app_key: edamam.apiKey,
+            health: restriction
+        }
+    }
+    
+    const formatted = formatParams(params);
+    const url = edamam.baseUrl + '?' + formatted;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(responseJson => {
+            makeRecipeHtml(responseJson, food);
+        })
+        .catch(err => console.log(err));
+}
+
+
+
+function fetchParamData(food, restriction){
+
     const params = {
         q: food,
         app_id: edamam.appId,
@@ -221,17 +232,37 @@ function fetchData(food, restriction){
 
 
 
+// function fetchData(food, restriction){
+
+//     const params = {
+//         q: food,
+//         app_id: edamam.appId,
+//         app_key: edamam.apiKey,
+//         health: restriction
+//     }
+
+//     const formatted = formatParams(params);
+//     const url = edamam.baseUrl + '?' + formatted;
+
+//     fetch(url)
+//         .then(response => response.json())
+//         .then(responseJson => {
+//             makeRecipeHtml(responseJson);
+//         })
+//         .catch(err => console.log(err));
+// }
 
 
 
 //LISTEN ON FORM AND EXECUTE CODE
 
 //listen on form
-function onSubmit(){
-    $('form').on('submit', function(e){
+function onMainSubmit(){
+    $('#js-food-search').on('submit', function(e){
         e.preventDefault();
         const food = $('#js-food').val();
         const restriction = $('#js-health').val();
+        $('#js-recipe-food').val(food);
         makeTitleHtml(food);
         fetchData(food, restriction);
         fetchWikiData(food);
@@ -239,5 +270,20 @@ function onSubmit(){
     });
 }
 
+function onRecipeSubmit(){
+    $('#js-recipe-submit').on('submit', function(e){
+        e.preventDefault();
+        const food = $('#js-food').val();
+        let recipeVal = $('#js-recipe-food').val();
+        recipeVal = `${food}`;
+        const restriction = $('#js-health').val();
+        makeTitleHtml(recipeVal);
+        fetchParamData(recipeVal, restriction);
+        fetchWikiData(recipeVal);
+        fetchNutrientNumber(recipeVal);
+    });
+}
 
-$(onSubmit);
+
+$(onMainSubmit);
+$(onRecipeSubmit);
