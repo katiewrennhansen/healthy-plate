@@ -23,8 +23,8 @@ h1 {
 
 section {
     width: 80%;
-    margin: 0 auto;
-    /* margin-top: 300px; */
+    margin: 20px auto;
+    border: 2px solid gray;
 }
 
 ul {
