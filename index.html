@@ -15,37 +15,46 @@
     <h2>Search for a food</h2>
     <form id="js-food-search">
         <input id="js-food" type="text" placeholder="search food">
-        <label for="health-options">Add a dietary restriction</label>
-        <select id="js-health" name="health-options">
-            <option value="" selected="selected">None</option>
-            <option value="vegan">Vegan</option>
-            <option value="vegetarian">Vegetarian</option>
-            <option value="tree-nut-free">Tree Nut Free</option>
-            <option value="peanut-free">Peanut Free</option>
-            <option value="sugar-conscious">Sugar Conscious (&lt;4g sugar per serving)</option>
-            <option value="alcohol-free">Alcohol Free</option>
-        </select>
         <input type="submit">
     </form>
     </header>
 
-    <section class="searched-food" id="js-searched-food">
-       
+    <section class="food-name">
+        <h2 class="searched-food" id="js-searched-food"></h2>
     </section>
 
     <section class="info">
-        <h3>Origins</h3>
-        <div class="results-info" id="js-results-info"></div>
+        <div class="widget">
+            <h3>Origins</h3>
+            <div class="results-info" id="js-results-info"></div>
+        </div>
     </section>
 
     <section class="nutrition-facts">
-        <h3>Nutrition</h3>
-        <table class="nutrition-info" id="js-results-nutrition"></table>
+        <div class="widget">
+            <h3>Nutrition</h3>
+            <table class="nutrition-info" id="js-results-nutrition"></table>
+        </div>  
     </section>
 
     <section class="recipes">
+        <div class="widget">
         <h3>Recipies</h3>
+        <form id="dietary-submit">
+            <label for="health-options">Add a dietary restriction</label>
+            <select id="js-health" name="health-options">
+                <option value="" selected="selected">None</option>
+                <option value="vegan">Vegan</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="tree-nut-free">Tree Nut Free</option>
+                <option value="peanut-free">Peanut Free</option>
+                <option value="sugar-conscious">Sugar Conscious (&lt;4g sugar per serving)</option>
+                <option value="alcohol-free">Alcohol Free</option>
+                <input type="submit">
+            </select>
+        </form>
         <ul class="results-list" id="js-results-list"></ul>
+        </div>
     </section>
 
     

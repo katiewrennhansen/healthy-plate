@@ -41,9 +41,7 @@ function makeTitleHtml(food){
     const restOfTitle = food.slice(1);
     const title = firstLetter + restOfTitle;
 
-    $('#js-searched-food').append(`
-    <h2>${title}</h2>
-        `);
+    $('#js-searched-food').text(title);
 }
 
 
@@ -57,7 +55,7 @@ function makeWikiHtml(responseJson){
     $('#js-results-info').append(`
     <img src=${data.thumbnail.source}>
     <p>${data.extract}</p>
-    <a href="https://en.wikipedia.org/wiki/${data.title}" target="_blank">Read More</a>
+    <a class="wiki-link" href="https://en.wikipedia.org/wiki/${data.title}" target="_blank">Read More</a>
     `);
 }
 
@@ -67,10 +65,10 @@ function makeNutrientHtml(responseJson){
     $('#js-results-nutrition').empty();
 
     const nutrient = responseJson.report.food.nutrients;
-
+    console.log(nutrient);
     $('#js-results-nutrition').append(`
         <tr>
-            <th>Nutrient</th>
+            <th>Nutrient per ${nutrient[0].measures[0].label}</th>
             <th>Amount</th>
         </tr>
         `);
@@ -79,12 +77,11 @@ function makeNutrientHtml(responseJson){
         $('#js-results-nutrition').append(`
             <tr>
                 <td>${nutrient[i].name}</td>
-                <td><span>${nutrient[i].value}</span> <span>${nutrient[i].unit}</span></td>
+                <td><span>${nutrient[i].measures[0].value}</span> <span>${nutrient[i].unit}</span></td>
             </tr>
         `);
     }
 }
-
 
 
 //make html for recipe data
@@ -92,6 +89,20 @@ function makeRecipeHtml(responseJson){
     $('#js-results-list').empty();
 
     const food = responseJson.hits;
+
+    // $('#js-results-list').append(`
+    // <form>
+    //     <label for="health-options">Add a dietary restriction</label>
+    //     <select id="js-health" name="health-options">
+    //         <option value="" selected="selected">None</option>
+    //         <option value="vegan">Vegan</option>
+    //         <option value="vegetarian">Vegetarian</option>
+    //         <option value="tree-nut-free">Tree Nut Free</option>
+    //         <option value="peanut-free">Peanut Free</option>
+    //         <option value="sugar-conscious">Sugar Conscious (&lt;4g sugar per serving)</option>
+    //         <option value="alcohol-free">Alcohol Free</option>
+    //     </select>
+    // </form>`);
 
     for (let i = 0; i < 10; i++){
         $('#js-results-list').append(`<li class="recipe">
@@ -156,7 +167,6 @@ function fetchNutrientNumber(food){
     fetch(url)
         .then(response => response.json())
         .then(responseJson => {
-            console.log(responseJson);
             const ndbno = responseJson.list.item[0].ndbno;
             console.log(ndbno);
             fetchNutrientData(ndbno);
@@ -181,6 +191,7 @@ function fetchNutrientData(ndbno){
     fetch(url)
         .then(response => response.json())
         .then(responseJson => {
+            console.log(responseJson);
             makeNutrientHtml(responseJson);
         })
         .catch(err => console.log(err));

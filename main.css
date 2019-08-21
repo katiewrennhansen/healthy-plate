@@ -45,6 +45,25 @@ a:hover {
     text-decoration: underline;
 }
 
+.food-name {
+    border: none;
+}
+
+.widget {
+    padding: 20px;
+}
+
+.wiki-link {
+    background: rgb(71, 231, 116);
+    border-radius: 5px;
+    padding: 10px 12px;
+    box-shadow: 1px 1px 3px gray;
+}
+
+th {
+    text-align: left;
+}
+
 .recipe {
     display: flex;
     background: rgb(220, 220, 220);
