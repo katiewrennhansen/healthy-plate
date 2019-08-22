@@ -1,10 +1,16 @@
+//fix error message display bug
+//add other diet filters
+
+
+
+
 'use strict';
  
-//GLOBAL VARIABLE
+//GLOBAL VARIABLES
+//======================================
 const wiki = {
     baseUrl: 'https://en.wikipedia.org/w/api.php'
 }
-
 
 const edamam = {
     baseUrl: 'https://api.edamam.com/search',
@@ -20,8 +26,10 @@ const ndb = {
 
 
 
-
 //FORMAT PARAMETERS
+//======================================
+
+//format query parameters
 function formatParams(params){
     const paramString = Object.keys(params).map(key =>`${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`);
     return paramString.join('&');
@@ -32,8 +40,9 @@ function formatParams(params){
 
 
 //MAKE HTML ELEMENTS FOR DATA
+//======================================
 
-//make html for title
+//capitalize first letter and make html for page title
 function makeTitleHtml(food){
     $('#js-searched-food').empty();
 
@@ -45,7 +54,7 @@ function makeTitleHtml(food){
 }
 
 
-//make html for wiki data
+//make html for wiki histroy information
 function makeWikiHtml(responseJson){
     $('#js-results-info').empty();
 
@@ -53,14 +62,15 @@ function makeWikiHtml(responseJson){
     const data = responseJson.query.pages[pageId];
   
     $('#js-results-info').append(`
-    <img src=${data.thumbnail.source}>
+    <img class="wiki-img" src=${data.thumbnail.source}>
     <p>${data.extract}</p>
     <a class="wiki-link" href="https://en.wikipedia.org/wiki/${data.title}" target="_blank">Read More</a>
     `);
+    $('.info').removeClass('hidden');
 }
 
 
-//make html for nutrient data
+//make html for nutrition information
 function makeNutrientHtml(responseJson){
     $('#js-results-nutrition').empty();
 
@@ -81,33 +91,34 @@ function makeNutrientHtml(responseJson){
             </tr>
         `);
     }
+    $('.nutrition-facts').removeClass('hidden');
 }
 
 
-//make html for recipe data
-function makeRecipeHtml(responseJson, item){
+//make html for recipes
+function makeRecipeHtml(responseJson){
     $('#js-results-list').empty();
     const food = responseJson.hits;
-
-    // $('#js-results-list').append(`
-    // `);
 
     for (let i = 0; i < 10; i++){
         $('#js-results-list').append(`<li class="recipe">
         <img class="image" src="${food[i].recipe.image}">
         <div class="recipe-content">
-        <p class="title"><a href="${food[i].recipe.url}" target="_blank">${food[i].recipe.label}</a></p>
+        <h4 class="title h4"><a href="${food[i].recipe.url}" target="_blank">${food[i].recipe.label}</a></h4>
         <p class="source">${food[i].recipe.source}</p>
         <p class="labels">${food[i].recipe.healthLabels}</p>
         <div>
         </li>`);
     }
+    $('.recipes').removeClass('hidden');
 }
 
 
-//FETCH DATA FROM APIS
 
-//fetch wiki food origin data
+//FETCH DATA FROM APIS
+//======================================
+
+//fetch food origin data from Wikipaedia API
 function fetchWikiData(food){
     const params = {
         origin: '*',
@@ -131,11 +142,14 @@ function fetchWikiData(food){
         .then(responseJson => {
             makeWikiHtml(responseJson);
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            $('.error-info').text('Error: unable to retrieve food information');
+            console.log(err);
+        });
 }
 
 
-//fetch food number (ndbno)
+//fetch food number (ndbno) from NDB API
 function fetchNutrientNumber(food){
     const params = {
         format: 'json',
@@ -152,10 +166,12 @@ function fetchNutrientNumber(food){
             const ndbno = responseJson.list.item[0].ndbno;
             fetchNutrientData(ndbno);
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            console.log(err)
+        });
 }
 
-//fetch nutrient data
+//fetch food nutrition data from NDB API using NDB number
 function fetchNutrientData(ndbno){
     const params = {
         ndbno: ndbno,
@@ -172,118 +188,84 @@ function fetchNutrientData(ndbno){
         .then(responseJson => {
             makeNutrientHtml(responseJson);
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            $('.error-nutrition').text('Error: unable to retrieve nutrient data');
+            console.log(err)
+        });
 }
 
 
-
-//fetch recipe data
-
+//fetch recipe data from edamam API
 function fetchData(food, restriction){
-    let params = {};
+    const params = {
+        q: food,
+        app_id: edamam.appId,
+        app_key: edamam.apiKey
+    }
 
-    if (restriction = 'none') {
-        params = {
-            q: food,
-            app_id: edamam.appId,
-            app_key: edamam.apiKey
-        }
-    } else {
-        params = {
-            q: food,
-            app_id: edamam.appId,
-            app_key: edamam.apiKey,
-            health: restriction
-        }
+    if (restriction) {
+        params.health = restriction;
     }
     
     const formatted = formatParams(params);
     const url = edamam.baseUrl + '?' + formatted;
-
-    fetch(url)
-        .then(response => response.json())
-        .then(responseJson => {
-            makeRecipeHtml(responseJson, food);
-        })
-        .catch(err => console.log(err));
-}
-
-
-
-function fetchParamData(food, restriction){
-
-    const params = {
-        q: food,
-        app_id: edamam.appId,
-        app_key: edamam.apiKey,
-        health: restriction
-    }
-
-    const formatted = formatParams(params);
-    const url = edamam.baseUrl + '?' + formatted;
-
+ 
     fetch(url)
         .then(response => response.json())
         .then(responseJson => {
             makeRecipeHtml(responseJson);
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            $('.error-recipe').text('Error: unable to retrieve recipes');
+            console.log(err)
+        });
 }
 
 
 
-// function fetchData(food, restriction){
-
-//     const params = {
-//         q: food,
-//         app_id: edamam.appId,
-//         app_key: edamam.apiKey,
-//         health: restriction
-//     }
-
-//     const formatted = formatParams(params);
-//     const url = edamam.baseUrl + '?' + formatted;
-
-//     fetch(url)
-//         .then(response => response.json())
-//         .then(responseJson => {
-//             makeRecipeHtml(responseJson);
-//         })
-//         .catch(err => console.log(err));
-// }
-
-
-
 //LISTEN ON FORM AND EXECUTE CODE
+//======================================
 
-//listen on form
+//listen on main form
 function onMainSubmit(){
     $('#js-food-search').on('submit', function(e){
         e.preventDefault();
         const food = $('#js-food').val();
-        const restriction = $('#js-health').val();
-        $('#js-recipe-food').val(food);
         makeTitleHtml(food);
-        fetchData(food, restriction);
+        fetchData(food);
         fetchWikiData(food);
         fetchNutrientNumber(food);
     });
 }
 
+//listen on dietary restriction form
 function onRecipeSubmit(){
     $('#js-recipe-submit').on('submit', function(e){
         e.preventDefault();
         const food = $('#js-food').val();
-        let recipeVal = $('#js-recipe-food').val();
-        recipeVal = `${food}`;
         const restriction = $('#js-health').val();
-        makeTitleHtml(recipeVal);
-        fetchParamData(recipeVal, restriction);
-        fetchWikiData(recipeVal);
-        fetchNutrientNumber(recipeVal);
+        makeTitleHtml(food);
+        fetchData(food, restriction);
+        fetchWikiData(food);
+        fetchNutrientNumber(food);
+
     });
 }
 
+//call all form submission functions
+function submitForms(){
+    onMainSubmit();
+    onRecipeSubmit();
+}
 
-$(onMainSubmit);
-$(onRecipeSubmit);
+
+
+//CALL ALL FUNCTIONS
+//======================================
+$(submitForms);
+
+
+
+
+
+

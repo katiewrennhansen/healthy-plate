@@ -1,30 +1,52 @@
+/*==========
+GLOBAL STYLES
+==========*/
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
 
 
 body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: 'Sintony', sans-serif;
 }
 
 header {
-    background-color: rgb(71, 231, 116);
+    background-color: rgb(172, 220, 110);
     margin: 0;
     padding: 50px;
-    /* position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0; */
+    height: 80vh;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Source Sans Pro', sans-serif;
+    text-align: center;
 }
 
 h1 {
-    font-size: 50px;
-    font-family: 'Dancing Script', sans-serif;
+    font-size: 60px;
+    font-weight: 900;
+}
+
+.h2 {
+    font-size: 50px;   
+}
+
+.h3 {
+    font-size: 40px;
+}
+
+.h4 {
+    text-align: left;
 }
 
 section {
     width: 80%;
     margin: 20px auto;
-    border: 2px solid gray;
 }
 
 ul {
@@ -45,35 +67,123 @@ a:hover {
     text-decoration: underline;
 }
 
-.food-name {
-    border: none;
-}
-
 .widget {
     padding: 20px;
 }
 
-.wiki-link {
-    background: rgb(71, 231, 116);
+.hidden {
+    display: none;
+}
+
+/*==========
+HEADER
+==========*/
+.food-search {
+    text-align: center;
+    max-width: 300px;
+    margin: 20px auto;
+    
+}
+
+.food {
+    display: flex;
+    flex-direction: column;
+}
+
+.food-search p {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+input#js-food {
+    padding: 8px 12px;
+    font-size: 15px;
+}
+
+input#submit {
+    margin-top: 20px;
+    background-color: rgb(50, 58, 84);
+    padding: 8px 12px;
+    border: none;
     border-radius: 5px;
-    padding: 10px 12px;
+    font-size: 15px;
+    color: white;
+}
+
+
+
+/*==========
+TITLE
+==========*/
+.food-name {
+    background: none;
+}
+
+
+
+
+/*==========
+WIKI STYLES
+==========*/
+.wiki-link {
+    background-color: rgb(50, 58, 84);  
+    border-radius: 5px;
+    padding: 8px 12px;
     box-shadow: 1px 1px 3px gray;
+    font-size: 15px;
+    color: white;
+}
+
+.wiki-img {
+    width: 100%;
+}
+
+.results-info h2,
+.results-info h3, 
+.results-info h4{
+    text-align: left;
+}
+
+
+
+
+
+/*==========
+NUTRITION TABLE STYLES
+==========*/
+table {
+    border-collapse: collapse;
 }
 
 th {
     text-align: left;
 }
 
+th, td {
+    border: 1px solid black;
+}
+
+
+
+
+
+/*==========
+RECIPE STYLES
+==========*/
 .recipe {
-    display: flex;
-    background: rgb(220, 220, 220);
+    background: rgb(233, 233, 233);
     border-radius: 2px;
     padding: 10px;
+    list-style: none;
 }
 
 .recipe img {
-    width: 120px;
+    width: 100%;
     margin-right: 40px;
+}
+
+p.labels {
+    overflow-wrap: break-word;
 }
 
 .title a {
@@ -84,3 +194,34 @@ th {
     font-style: italic;
 }
 
+.diet-form {
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+.diet-dropdown {
+    margin-top: 12px;
+    font-size: 16px;
+}
+
+.diet-submit {
+    border: none;
+    background-color: rgb(50, 58, 84);  
+    border-radius: 5px;
+    padding: 5px 8px;
+    font-size: 15px;
+    color: white;
+}
+
+
+
+
+/*==========
+MEDIA QUERIES
+==========*/
+@media (min-width: 768px){
+    .recipe {
+        display: flex;
+    }
+}

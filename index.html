@@ -6,65 +6,65 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Healthy Plate</title>
     <link rel="stylesheet" href="main.css">
-    <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sintony:400,700|Source+Sans+Pro:300i,400,600,900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-    <h1>Healthy Plate</h1>
-
-    <h2>Search for a food</h2>
-    <form id="js-food-search">
-        <input id="js-food" type="text" placeholder="search food">
-        <input type="submit">
-    </form>
+        <h1 class="h1">Healthy Plate</h1>
+        <div class="food-search">
+            <p>Search for a food</p>
+            <form class="food" id="js-food-search">
+                <input id="js-food" type="text" placeholder="enter food item">
+                <input id="submit" type="submit">
+            </form>
+        </div>  
     </header>
 
     <section class="food-name">
-        <h2 class="searched-food" id="js-searched-food"></h2>
+        <h2 class="searched-food h2" id="js-searched-food"></h2>
     </section>
 
-    <section class="info">
-        <div class="widget">
-            <h3>Origins</h3>
+
+    
+    <section id="js-results-section">
+        <p class="error-info"></p>
+        <div class="widget info hidden">
             <div class="results-info" id="js-results-info"></div>
         </div>
     </section>
 
-    <section class="nutrition-facts">
-        <div class="widget">
-            <h3>Nutrition</h3>
+    <section>
+        <p class="error-nutrition"></p>
+        <div class="widget nutrition-facts hidden">
+            <h3 class="h3">Nutrition Information</h3>
             <table class="nutrition-info" id="js-results-nutrition"></table>
         </div>  
     </section>
 
-    <section class="recipes">
-        <div class="widget">
-        <h3>Recipies</h3>
-        <form id="js-recipe-submit">
-                <label for="current-value">Showing Recipes for: </label>
-                <input id="js-recipe-food" type="text" name="current-value" value="">
-                <label for="health-options">Add a dietary restriction</label>
-                <select id="js-health" name="health-options">
+    <section>
+        <p class="error-recipe"></p>
+        <div class="widget recipes hidden">
+            <h3 class="h3">Recipies</h3>
+            <form class="diet-form" id="js-recipe-submit">
+                <label class="diet-label" for="health-options">Add a dietary restriction</label>
+                <select class="diet-dropdown" id="js-health" name="health-options">
                     <option value="" selected="selected">None</option>
                     <option value="vegan">Vegan</option>
                     <option value="vegetarian">Vegetarian</option>
                     <option value="tree-nut-free">Tree Nut Free</option>
                     <option value="peanut-free">Peanut Free</option>
-                    <option value="sugar-conscious">Sugar Conscious (&lt;4g sugar per serving)</option>
-                    <option value="alcohol-free">Alcohol Free</option>
                 </select>
-                <input type="submit">
+                <input class="diet-submit" type="submit">
             </form>
-        <ul class="results-list" id="js-results-list"></ul>
+            <ul class="results-list" id="js-results-list"></ul>
         </div>
     </section>
 
-    
-
     <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
-  <script src="index.js"></script>
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
+    <script src="index.js"></script>
 </body>
 </html>
