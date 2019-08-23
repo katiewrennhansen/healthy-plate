@@ -44,7 +44,7 @@ h1 {
     text-align: left;
 }
 
-section {
+div.section {
     width: 80%;
     margin: 20px auto;
 }
@@ -222,6 +222,9 @@ MEDIA QUERIES
 ==========*/
 @media (min-width: 768px){
     .recipe {
+        display: flex;
+    }
+    .top-row-flex {
         display: flex;
     }
 }
