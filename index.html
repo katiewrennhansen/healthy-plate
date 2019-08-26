@@ -12,7 +12,7 @@
     <header>
         <h1 class="h1">Healthy Plate</h1>
         <div class="food-search">
-            <p>Search for a food</p>
+            <p>Search for a food item</p>
             <form class="food" id="js-food-search">
                 <input id="js-food" type="text" placeholder="enter food item">
                 <input id="submit" type="submit">
@@ -21,10 +21,11 @@
     </header>
 
     <!-- <section class="food-name"></section> -->
+    <h2 class="searched-food h2" id="js-searched-food"></h2>
+
     <div class="top-row-flex">
         <div class="section" id="js-results-section">
-            <h2 class="searched-food h2" id="js-searched-food"></h2>
-            <p class="error-info"></p>
+            <p class="error-info hidden"></p>
             <div class="widget info hidden">
                 <div class="results-info" id="js-results-info"></div>
             </div>
@@ -33,25 +34,35 @@
         <div class="section">
             <p class="error-nutrition"></p>
             <div class="widget nutrition-facts hidden">
-                <h3 class="h3">Nutrition Information</h3>
+                <h3 class="h3">Nutrition Information for: <span id="js-nut-title"></span></h3>
                 <table class="nutrition-info" id="js-results-nutrition"></table>
             </div>  
         </div>
     </div>
     
     <div class="section">
-        <p class="error-recipe"></p>
+        <p class="error-recipe hidden"></p>
         <div class="widget recipes hidden">
             <h3 class="h3">Recipies</h3>
             <form class="diet-form" id="js-recipe-submit">
-                <label class="diet-label" for="health-options">Add a dietary restriction</label>
-                <select class="diet-dropdown" id="js-health" name="health-options">
+                <label class="health-label" for="health-options">Add a dietary restriction: 
+                <select class="health-dropdown" id="js-health" name="health-options">
                     <option value="" selected="selected">None</option>
                     <option value="vegan">Vegan</option>
                     <option value="vegetarian">Vegetarian</option>
                     <option value="tree-nut-free">Tree Nut Free</option>
                     <option value="peanut-free">Peanut Free</option>
                 </select>
+                </label>
+                <label class="diet-label" for="diet-options">Add a diet type: 
+                <select class="diet-dropdown" id="js-diet" name="diet-options">
+                    <option value="" selected="selected">None</option>
+                    <option value="balanced">Balanced (Protein/Fat/Carb values in 15/35/50 ratio)</option>
+                    <option value="high-protein">High Protein (&gt;50% calories from protein)</option>
+                    <option value="low-fat">Low Fat (&lt;15% calories from fat)</option>
+                    <option value="low-carb">Low Carb (&lt;20% calories from carbs)</option>
+                </select>
+                </label>
                 <input class="diet-submit" type="submit">
             </form>
             <ul class="results-list" id="js-results-list"></ul>

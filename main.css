@@ -24,16 +24,20 @@ header {
 
 h1, h2, h3, h4 {
     font-family: 'Source Sans Pro', sans-serif;
-    text-align: center;
 }
 
 h1 {
     font-size: 60px;
     font-weight: 900;
+    text-align: center;
+
 }
 
 .h2 {
-    font-size: 50px;   
+    font-size: 50px; 
+    width: 80%;
+    margin: 40px auto;
+    padding: 20px;  
 }
 
 .h3 {
@@ -81,8 +85,7 @@ HEADER
 .food-search {
     text-align: center;
     max-width: 300px;
-    margin: 20px auto;
-    
+    margin: 0 auto; 
 }
 
 .food {
@@ -136,6 +139,7 @@ WIKI STYLES
 
 .wiki-img {
     width: 100%;
+    max-width: 350px;
 }
 
 .results-info h2,
@@ -153,6 +157,7 @@ NUTRITION TABLE STYLES
 ==========*/
 table {
     border-collapse: collapse;
+    /* margin: 0 auto; */
 }
 
 th {
@@ -177,6 +182,11 @@ RECIPE STYLES
     list-style: none;
 }
 
+label {
+    display: block;
+    text-align: left;
+}
+
 .recipe img {
     width: 100%;
     margin-right: 40px;
@@ -194,13 +204,7 @@ p.labels {
     font-style: italic;
 }
 
-.diet-form {
-    text-align: center;
-    margin: 0 auto;
-}
-
-
-.diet-dropdown {
+.health-dropdown, .diet-dropdown {
     margin-top: 12px;
     font-size: 16px;
 }
@@ -212,6 +216,7 @@ p.labels {
     padding: 5px 8px;
     font-size: 15px;
     color: white;
+    margin-top: 20px;
 }
 
 
@@ -221,10 +226,24 @@ p.labels {
 MEDIA QUERIES
 ==========*/
 @media (min-width: 768px){
+    .recipe img {
+        width: 300px;
+    }
     .recipe {
         display: flex;
     }
+}
+
+@media (min-width: 1100px) {
     .top-row-flex {
         display: flex;
+        width: 90%;
+        margin: 0 auto;
+    }
+    .nutrition-facts h3 {
+        margin-top: 0;
+    }
+    .recipe h3 {
+        margin-top: 40px;
     }
 }
