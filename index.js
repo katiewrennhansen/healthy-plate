@@ -105,20 +105,31 @@ function makeNutrientHtml(responseJson){
 
 
 //make html for recipes
-function makeRecipeHtml(responseJson){
+function makeRecipeHtml(responseJson, num){
+
+    // if (!num){
+    //     num = 10;
+    // }
+
     $('#js-results-list').empty();
     $('.error-recipe').addClass('hidden');
 
     const food = responseJson.hits;
 
+    for (let i = 0; i < num; i++){
 
-    for (let i = 0; i < 10; i++){
+        const label = food[i].recipe.healthLabels;
+
+        const labelArray = label.map(function(l){
+            return ` ${l}`;
+        });
+
         $('#js-results-list').append(`<li class="recipe">
         <img class="image" src="${food[i].recipe.image}">
         <div class="recipe-content">
         <h4 class="title h4"><a href="${food[i].recipe.url}" target="_blank">${food[i].recipe.label}</a></h4>
         <p class="source">${food[i].recipe.source}</p>
-        <p class="labels">${food[i].recipe.healthLabels}</p>
+        <p class="labels">${labelArray}</p>
         <div>
         </li>`);
     }
@@ -157,7 +168,7 @@ function fetchWikiData(food){
             makeWikiHtml(responseJson);
         })
         .catch(err => {
-            $('.error-info').text('Error: unable to retrieve food information').removeClass('hidden');
+            $('.error-info').text('Error: unable to retrieve food information.').removeClass('hidden');
             $('.info').addClass('hidden');
             console.log(err);
         });
@@ -182,7 +193,7 @@ function fetchNutrientNumber(food){
             fetchNutrientData(ndbno);
         })
         .catch(err => {
-            $('.error-nutrition').text('Error: unable to retrieve nutrient data').removeClass('hidden');
+            $('.error-nutrition').text('Error: unable to retrieve nutrient data.').removeClass('hidden');
             $('.nutrition-facts').addClass('hidden');
             console.log(err);
         });
@@ -206,7 +217,7 @@ function fetchNutrientData(ndbno){
             makeNutrientHtml(responseJson);
         })
         .catch(err => {
-            $('.error-nutrition').text('Error: unable to retrieve nutrient data').removeClass('hidden');
+            $('.error-nutrition').text('Error: unable to retrieve nutrient data.').removeClass('hidden');
             $('.nutrition-facts').addClass('hidden');
             console.log(err);
         });
@@ -214,7 +225,7 @@ function fetchNutrientData(ndbno){
 
 
 //fetch recipe data from edamam API
-function fetchRecipeData(food, restriction, diet){
+function fetchRecipeData(food, restriction, diet, num){
     const params = {
         q: food,
         app_id: edamam.appId,
@@ -228,6 +239,11 @@ function fetchRecipeData(food, restriction, diet){
     if (diet) {
         params.diet = diet;
     }
+
+    if(num) {
+        params.from = 0;
+        params.to = num;
+    }
     
     const formatted = formatParams(params);
     const url = edamam.baseUrl + '?' + formatted;
@@ -235,10 +251,10 @@ function fetchRecipeData(food, restriction, diet){
     fetch(url)
         .then(response => response.json())
         .then(responseJson => {
-            makeRecipeHtml(responseJson);
+            makeRecipeHtml(responseJson, num);
         })
         .catch(err => {
-            $('.error-recipe').text('Error: unable to retrieve recipes').removeClass('hidden');
+            $('.error-recipe').text('Error: unable to retrieve recipes.').removeClass('hidden');
             $('.recipes').addClass('hidden');
             console.log(err)
         });
@@ -268,7 +284,8 @@ function onRecipeSubmit(){
         const food = $('#js-food').val();
         const restriction = $('#js-health').val();
         const diet = $('#js-diet').val();
-        fetchRecipeData(food, restriction, diet);
+        const num = $('#js-results-num').val();
+        fetchRecipeData(food, restriction, diet, num);
     });
 }
 

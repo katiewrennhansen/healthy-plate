@@ -157,7 +157,6 @@ NUTRITION TABLE STYLES
 ==========*/
 table {
     border-collapse: collapse;
-    /* margin: 0 auto; */
 }
 
 th {
@@ -166,6 +165,7 @@ th {
 
 th, td {
     border: 1px solid black;
+    padding: 5px;
 }
 
 
@@ -204,7 +204,7 @@ p.labels {
     font-style: italic;
 }
 
-.health-dropdown, .diet-dropdown {
+.health-dropdown, .diet-dropdown, .num-input {
     margin-top: 12px;
     font-size: 16px;
 }
