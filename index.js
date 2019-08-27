@@ -70,7 +70,7 @@ function makeWikiHtml(responseJson){
     $('#js-results-info').append(`
     <img class="wiki-img" src=${data.thumbnail.source}>
     <p>${data.extract}</p>
-    <a class="wiki-link" href="https://en.wikipedia.org/wiki/${data.title}" target="_blank" alt="image from wikipaedia page of chosen food item">Read More</a>
+    <a class="wiki-link" href="https://en.wikipedia.org/wiki/${data.title}" target="_blank" alt="image from wikipaedia page of chosen food item">Read More on Wikipedia</a>
     `);
     $('.info').removeClass('hidden');
 }
@@ -87,7 +87,7 @@ function makeNutrientHtml(responseJson){
 
     $('#js-results-nutrition').append(`
         <tr>
-            <th>Nutrient per ${nutrient[0].measures[0].label}</th>
+            <th>Nutrients per ${nutrient[0].measures[0].label}</th>
             <th>Amount</th>
         </tr>
         `);

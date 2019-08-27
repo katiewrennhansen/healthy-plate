@@ -16,7 +16,10 @@ body {
 }
 
 header {
-    background-color: rgb(172, 220, 110);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('images/cover.jpg');
+    background-position: center left;
+    background-size: cover;
+    background-color: rgba(172, 220, 110, 0.26);
     margin: 0;
     padding: 50px;
     height: 80vh;
@@ -30,6 +33,8 @@ h1 {
     font-size: 60px;
     font-weight: 900;
     text-align: center;
+    color: white;
+    text-shadow: 1px 1px 2px black;
 
 }
 
@@ -56,6 +61,7 @@ div.section {
 
 ul {
     padding: 0;
+    margin-top: 50px;
 }
 
 
@@ -92,20 +98,23 @@ HEADER
 
 .food-search p {
     font-weight: 700;
-    font-size: 20px;
+    font-size: 24px;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+
 }
 
 input#js-food {
     margin-top: 40px;
     padding: 8px 12px;
     font-size: 20px;
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.9);
     border: 1px solid rgb(50, 58, 84);
     border-radius: 5px;
 }
 
 input#js-food:focus {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 1.0);
 
 }
 
@@ -162,7 +171,7 @@ th, td {
 RECIPE STYLES
 ==========*/
 .recipe {
-    background: rgb(233, 233, 233);
+    background: rgba(233, 233, 233, 0.849);
     border-radius: 2px;
     padding: 10px;
     list-style: none;
@@ -188,6 +197,10 @@ p.labels {
     font-size: 25px
 }
 
+.title a:hover {
+    text-decoration: underline;
+}
+
 .source {
     font-style: italic;
 }
@@ -196,14 +209,31 @@ p.labels {
     font-size: 12px;
 }
 
+.recipe-content {
+    padding-right: 40px;
+}
+
+
+/*==========
+FOOTER
+==========*/
+footer {
+    background-color: rgb(172, 220, 110);
+    padding: 30px;
+}
+
+footer p {
+    text-align: center;
+    margin: 0;
+    
+}
+
 
 
 /*==========
 BUTTONS
 ==========*/
 .wiki-link, .diet-submit, input#submit {
-    background-color: rgb(50, 58, 84);  
-    border: 1px solid rgb(50, 58, 84);
     border-radius: 5px;
     padding: 8px 12px;
     font-size: 18px;
@@ -213,12 +243,27 @@ BUTTONS
     margin-top: 20px;
 }
 
-.diet-submit:hover, .wiki-link:hover, input#submit:hover {
+.wiki-link, .diet-submit {
+    background-color: rgb(50, 58, 84);  
+    border: 1px solid rgb(50, 58, 84);
+}
+
+.diet-submit:hover, .wiki-link:hover {
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid rgb(50, 58, 84);
     color: rgb(50, 58, 84);
 }
 
+input#submit {
+    border: 1px solid white;
+    background-color: rgba(240, 248, 255, 0);
+}
+
+input#submit:hover {
+    background-color: rgb(50, 58, 84);  
+    border: 1px solid rgb(50, 58, 84);
+    color: white
+}
 
 /*==========
 ERRORS
@@ -229,6 +274,7 @@ ERRORS
     font-size: 20px;
     background-color: rgba(255, 0, 0, 0.144);
     border-radius: 3px;
+    height: 100px;
 }
 
 
@@ -237,6 +283,15 @@ ERRORS
 MEDIA QUERIES
 ==========*/
 @media (min-width: 768px){
+    h1 {
+        font-size: 75px;
+    }
+    .food-search {
+        max-width: 350px;
+    }
+    .food-search p {
+        font-size: 28px;
+    }
     .recipe img {
         width: 300px;
     }
@@ -249,6 +304,12 @@ MEDIA QUERIES
 }
 
 @media (min-width: 1100px) {
+    h1 {
+        font-size: 90px;
+    }
+    .food-search p {
+        font-size: 30px;
+    }
     .h2 {
         text-align: center;
     }
@@ -271,5 +332,16 @@ MEDIA QUERIES
     }
     .widgit {
         padding: 0px 30px;
+    }
+    .h4 a {
+        font-size: 35px;
+    }
+    .recipe-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .recipe-content p {
+        font-size: 18px;
     }
 }
