@@ -70,7 +70,7 @@ function makeWikiHtml(responseJson){
     $('#js-results-info').append(`
     <img class="wiki-img" src=${data.thumbnail.source}>
     <p>${data.extract}</p>
-    <a class="wiki-link" href="https://en.wikipedia.org/wiki/${data.title}" target="_blank">Read More</a>
+    <a class="wiki-link" href="https://en.wikipedia.org/wiki/${data.title}" target="_blank" alt="image from wikipaedia page of chosen food item">Read More</a>
     `);
     $('.info').removeClass('hidden');
 }
@@ -107,9 +107,9 @@ function makeNutrientHtml(responseJson){
 //make html for recipes
 function makeRecipeHtml(responseJson, num){
 
-    // if (!num){
-    //     num = 10;
-    // }
+    if (!num){
+        num = 10;
+    }
 
     $('#js-results-list').empty();
     $('.error-recipe').addClass('hidden');
@@ -118,17 +118,29 @@ function makeRecipeHtml(responseJson, num){
 
     for (let i = 0; i < num; i++){
 
+        //breaks food label array into evenly spaced array
         const label = food[i].recipe.healthLabels;
-
         const labelArray = label.map(function(l){
             return ` ${l}`;
         });
 
+        //total calories
+        const totalCalories = Math.round(parseFloat(food[i].recipe.calories));
+        const calories = Math.round(totalCalories/food[i].recipe.yield);
+
+        //add ingrediants list
+        // const ingredient = food[i].recipe.ingredientLines;
+        // const newArr = ingredient.map(function(ing){
+        //     $('.ingredients').append(`<li>${ing}</li>`);
+        // });
+
+        //create html
         $('#js-results-list').append(`<li class="recipe">
-        <img class="image" src="${food[i].recipe.image}">
+        <img class="image" src="${food[i].recipe.image}" alt="image of ${food[i].recipe.label}">
         <div class="recipe-content">
         <h4 class="title h4"><a href="${food[i].recipe.url}" target="_blank">${food[i].recipe.label}</a></h4>
         <p class="source">${food[i].recipe.source}</p>
+        <p class="calories">${calories} calories per serving</p>
         <p class="labels">${labelArray}</p>
         <div>
         </li>`);
@@ -168,7 +180,7 @@ function fetchWikiData(food){
             makeWikiHtml(responseJson);
         })
         .catch(err => {
-            $('.error-info').text('Error: unable to retrieve food information.').removeClass('hidden');
+            $('.error-info').text('ERROR: unable to retrieve food information.').removeClass('hidden');
             $('.info').addClass('hidden');
             console.log(err);
         });
@@ -193,7 +205,7 @@ function fetchNutrientNumber(food){
             fetchNutrientData(ndbno);
         })
         .catch(err => {
-            $('.error-nutrition').text('Error: unable to retrieve nutrient data.').removeClass('hidden');
+            $('.error-nutrition').text('ERROR: unable to retrieve nutrient data.').removeClass('hidden');
             $('.nutrition-facts').addClass('hidden');
             console.log(err);
         });
@@ -217,7 +229,7 @@ function fetchNutrientData(ndbno){
             makeNutrientHtml(responseJson);
         })
         .catch(err => {
-            $('.error-nutrition').text('Error: unable to retrieve nutrient data.').removeClass('hidden');
+            $('.error-nutrition').text('ERROR: unable to retrieve nutrient data.').removeClass('hidden');
             $('.nutrition-facts').addClass('hidden');
             console.log(err);
         });
@@ -251,10 +263,11 @@ function fetchRecipeData(food, restriction, diet, num){
     fetch(url)
         .then(response => response.json())
         .then(responseJson => {
+            console.log(responseJson);
             makeRecipeHtml(responseJson, num);
         })
         .catch(err => {
-            $('.error-recipe').text('Error: unable to retrieve recipes.').removeClass('hidden');
+            $('.error-recipe').text('ERROR: unable to retrieve recipes.').removeClass('hidden');
             $('.recipes').addClass('hidden');
             console.log(err)
         });

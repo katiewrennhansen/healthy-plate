@@ -51,6 +51,7 @@ h1 {
 div.section {
     width: 80%;
     margin: 20px auto;
+    display: flex;
 }
 
 ul {
@@ -65,10 +66,6 @@ li {
 a {
     text-decoration: none;
     color: black;
-}
-
-a:hover {
-    text-decoration: underline;
 }
 
 .widget {
@@ -99,20 +96,18 @@ HEADER
 }
 
 input#js-food {
+    margin-top: 40px;
     padding: 8px 12px;
-    font-size: 15px;
-}
-
-input#submit {
-    margin-top: 20px;
-    background-color: rgb(50, 58, 84);
-    padding: 8px 12px;
-    border: none;
+    font-size: 20px;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgb(50, 58, 84);
     border-radius: 5px;
-    font-size: 15px;
-    color: white;
 }
 
+input#js-food:focus {
+    background: rgba(255, 255, 255, 0.9);
+
+}
 
 
 /*==========
@@ -128,15 +123,6 @@ TITLE
 /*==========
 WIKI STYLES
 ==========*/
-.wiki-link {
-    background-color: rgb(50, 58, 84);  
-    border-radius: 5px;
-    padding: 8px 12px;
-    box-shadow: 1px 1px 3px gray;
-    font-size: 15px;
-    color: white;
-}
-
 .wiki-img {
     width: 100%;
     max-width: 350px;
@@ -180,11 +166,13 @@ RECIPE STYLES
     border-radius: 2px;
     padding: 10px;
     list-style: none;
+    width: 100%;
 }
 
 label {
     display: block;
     text-align: left;
+    margin-top: 12px;
 }
 
 .recipe img {
@@ -205,20 +193,43 @@ p.labels {
 }
 
 .health-dropdown, .diet-dropdown, .num-input {
-    margin-top: 12px;
-    font-size: 16px;
+    font-size: 12px;
 }
 
-.diet-submit {
-    border: none;
+
+
+/*==========
+BUTTONS
+==========*/
+.wiki-link, .diet-submit, input#submit {
     background-color: rgb(50, 58, 84);  
+    border: 1px solid rgb(50, 58, 84);
     border-radius: 5px;
-    padding: 5px 8px;
-    font-size: 15px;
+    padding: 8px 12px;
+    font-size: 18px;
     color: white;
+    cursor: pointer;
+    border: none;
     margin-top: 20px;
 }
 
+.diet-submit:hover, .wiki-link:hover, input#submit:hover {
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid rgb(50, 58, 84);
+    color: rgb(50, 58, 84);
+}
+
+
+/*==========
+ERRORS
+==========*/
+.error {
+    padding: 20px 20px;
+    margin: 40px 0;
+    font-size: 20px;
+    background-color: rgba(255, 0, 0, 0.144);
+    border-radius: 3px;
+}
 
 
 
@@ -232,18 +243,33 @@ MEDIA QUERIES
     .recipe {
         display: flex;
     }
+    .health-dropdown, .diet-dropdown, .num-input {
+        font-size: 16px;
+    }
 }
 
 @media (min-width: 1100px) {
+    .h2 {
+        text-align: center;
+    }
     .top-row-flex {
         display: flex;
-        width: 90%;
+        width: 80%;
         margin: 0 auto;
     }
     .nutrition-facts h3 {
         margin-top: 0;
     }
+    .results-info {
+        padding-right: 60px;
+    }
+    .nutrition-facts{
+        padding-left: 60px;
+    }
     .recipe h3 {
         margin-top: 40px;
+    }
+    .widgit {
+        padding: 0px 30px;
     }
 }
