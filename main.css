@@ -1,32 +1,53 @@
 /*==========
+FIX
+*mobile styles
+==========*/
+
+
+
+/*==========
 GLOBAL STYLES
 ==========*/
 html {
     box-sizing: border-box;
-  }
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
+    scroll-behavior: smooth;
+}
 
+*, *:before, *:after {
+box-sizing: inherit;
+}
 
 body {
     margin: 0;
     padding: 0;
     font-family: 'Sintony', sans-serif;
+    background-color: rgb(255, 255, 255)
 }
 
 header {
     background: linear-gradient(to right, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('images/cover.jpg');
     background-position: center left;
     background-size: cover;
-    background-color: rgba(172, 220, 110, 0.26);
     margin: 0;
     padding: 50px;
-    height: 80vh;
+    height: 82vh;
 }
 
-h1, h2, h3, h4 {
+h1, 
+h2, 
+h3, 
+h4 {
     font-family: 'Source Sans Pro', sans-serif;
+}
+
+input#js-food,
+input#submit,
+.wiki-link, 
+.diet-submit,
+.health-dropdown, 
+.diet-dropdown, 
+.num-input {
+    font-family: 'Sintony', sans-serif;
 }
 
 h1 {
@@ -35,7 +56,7 @@ h1 {
     text-align: center;
     color: white;
     text-shadow: 1px 1px 2px black;
-
+    margin: 0;
 }
 
 .h2 {
@@ -54,7 +75,7 @@ h1 {
 }
 
 div.section {
-    width: 80%;
+    width: 90%;
     margin: 20px auto;
     display: flex;
 }
@@ -105,7 +126,7 @@ HEADER
 }
 
 input#js-food {
-    margin-top: 40px;
+    margin-top: 10px;
     padding: 8px 12px;
     font-size: 20px;
     background: rgba(255, 255, 255, 0.9);
@@ -132,6 +153,11 @@ TITLE
 /*==========
 WIKI STYLES
 ==========*/
+.top-row-flex {
+    border-bottom: 2px solid gray;
+    padding-bottom: 50px;
+}
+
 .wiki-img {
     width: 100%;
     max-width: 350px;
@@ -158,7 +184,8 @@ th {
     text-align: left;
 }
 
-th, td {
+th, 
+td {
     border: 1px solid black;
     padding: 5px;
 }
@@ -171,7 +198,7 @@ th, td {
 RECIPE STYLES
 ==========*/
 .recipe {
-    background: rgba(233, 233, 233, 0.849);
+    background: rgba(242, 242, 242, 0.856);
     border-radius: 2px;
     padding: 10px;
     list-style: none;
@@ -205,7 +232,9 @@ p.labels {
     font-style: italic;
 }
 
-.health-dropdown, .diet-dropdown, .num-input {
+.health-dropdown, 
+.diet-dropdown, 
+.num-input {
     font-size: 12px;
 }
 
@@ -218,14 +247,24 @@ p.labels {
 FOOTER
 ==========*/
 footer {
-    background-color: rgb(172, 220, 110);
+    /* original 
+    background-color: rgb(172, 220, 110); */
+    background-color: rgb(149, 201, 80);
     padding: 30px;
+}
+
+.harvest-icon {
+    width: 50px;
+}
+
+.icon-container {
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 footer p {
     text-align: center;
-    margin: 0;
-    
+    margin: 10px 0; 
 }
 
 
@@ -233,7 +272,9 @@ footer p {
 /*==========
 BUTTONS
 ==========*/
-.wiki-link, .diet-submit, input#submit {
+.wiki-link, 
+.diet-submit, 
+input#submit {
     border-radius: 5px;
     padding: 8px 12px;
     font-size: 18px;
@@ -243,12 +284,14 @@ BUTTONS
     margin-top: 20px;
 }
 
-.wiki-link, .diet-submit {
+.wiki-link, 
+.diet-submit {
     background-color: rgb(50, 58, 84);  
     border: 1px solid rgb(50, 58, 84);
 }
 
-.diet-submit:hover, .wiki-link:hover {
+.diet-submit:hover, 
+.wiki-link:hover {
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid rgb(50, 58, 84);
     color: rgb(50, 58, 84);
@@ -282,9 +325,20 @@ ERRORS
 /*==========
 MEDIA QUERIES
 ==========*/
+@media (min-width: 400px){
+    .h1 {
+        margin: 40px 0;
+    }
+    input#js-food {
+        margin-top: 40px;
+    }
+}
 @media (min-width: 768px){
     h1 {
         font-size: 75px;
+    }
+    .h1 {
+        margin-top: 15vh;
     }
     .food-search {
         max-width: 350px;
@@ -292,13 +346,27 @@ MEDIA QUERIES
     .food-search p {
         font-size: 28px;
     }
+    .h2 {
+        font-size: 55px;
+    }
+    div.section {
+        width: 80%;
+    }
+    .h3 {
+        font-size: 45px;
+    }
+    .h4 a {
+        font-size: 30px;
+    }
     .recipe img {
         width: 300px;
     }
     .recipe {
         display: flex;
     }
-    .health-dropdown, .diet-dropdown, .num-input {
+    .health-dropdown, 
+    .diet-dropdown, 
+    .num-input {
         font-size: 16px;
     }
 }
@@ -311,6 +379,7 @@ MEDIA QUERIES
         font-size: 30px;
     }
     .h2 {
+        font-size: 60px;
         text-align: center;
     }
     .top-row-flex {
@@ -322,13 +391,16 @@ MEDIA QUERIES
         margin-top: 0;
     }
     .results-info {
-        padding-right: 60px;
+        margin-right: 60px;
     }
     .nutrition-facts{
-        padding-left: 60px;
+        margin-left: 60px;
     }
     .recipe h3 {
         margin-top: 40px;
+    }
+    .h3 {
+        font-size: 50px
     }
     .widgit {
         padding: 0px 30px;

@@ -7,20 +7,21 @@
     <title>Healthy Plate</title>
     <link rel="stylesheet" href="main.css">
     <link href="https://fonts.googleapis.com/css?family=Sintony:400,700|Source+Sans+Pro:300i,400,600,900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="images/harvest.png">
     <script src="https://developer.edamam.com/attribution/badge.js"></script>
 </head>
 <body>
     <header>
         <h1 class="h1">Healthy Plate</h1>
         <div class="food-search">
-            <p>Search for a food item</p>
+            <p>Search for a whole food</p>
             <form class="food" id="js-food-search">
                 <input id="js-food" type="text" placeholder="enter food item (ex. apple)">
                 <input id="submit" type="submit">
             </form>
         </div>  
     </header>
-    <section>
+    <section id="main-content">
         <h2 class="searched-food h2" id="js-searched-food"></h2>
         <div class="top-row-flex">
             <div class="section" id="js-results-section">
@@ -74,7 +75,11 @@
     </section>
 
     <footer>
-        <p><a href="katiewrennhansen.com">katiewrennhansen.com</a></p>
+        <div class="icon-container">
+            <img class="harvest-icon" src="images/harvest.png" alt="harvet icon">
+        </div>
+        <p><a href="https://katiewrennhansen.github.io/dev-portfolio/" target="_blank">katiewrennhansen.com</a></p>
+        <p>Icons made by <a href="https://www.flaticon.com/authors/flat-icons" title="Flat Icons">Flat Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></p>
     </footer>
 
     <script

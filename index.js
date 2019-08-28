@@ -1,10 +1,8 @@
-//fix error message display bug
-//add other diet filters
-
-
+//fix bug with page load at bottom of page
 
 
 'use strict';
+
  
 //GLOBAL VARIABLES
 //======================================
@@ -34,13 +32,6 @@ function formatParams(params){
     const paramString = Object.keys(params).map(key =>`${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`);
     return paramString.join('&');
 }
-
-
-function formatQuery(food){
-
-}
-
-
 
 
 
@@ -127,12 +118,6 @@ function makeRecipeHtml(responseJson, num){
         //total calories
         const totalCalories = Math.round(parseFloat(food[i].recipe.calories));
         const calories = Math.round(totalCalories/food[i].recipe.yield);
-
-        //add ingrediants list
-        // const ingredient = food[i].recipe.ingredientLines;
-        // const newArr = ingredient.map(function(ing){
-        //     $('.ingredients').append(`<li>${ing}</li>`);
-        // });
 
         //create html
         $('#js-results-list').append(`<li class="recipe">
@@ -277,24 +262,36 @@ function fetchRecipeData(food, restriction, diet, num){
 
 //LISTEN ON FORM AND EXECUTE CODE
 //======================================
+// function onReload(){
+//     $(window).on('beforeunload', function(){
+//         $(window).scrollTop(0);
+//     });
+// }
+
 
 //listen on main form
 function onMainSubmit(){
     $('#js-food-search').on('submit', function(e){
         e.preventDefault();
-        const food = $('#js-food').val();
+        const food = $('#js-food').val().toLowerCase();
         makeTitleHtml(food);
         fetchRecipeData(food);
         fetchWikiData(food);
         fetchNutrientNumber(food);
+        // window.scrollTo(0, 600);
+        $('#js-recipe-submit').each(function(){
+            this.reset();
+        });
     });
+   
+    
 }
 
 //listen on dietary restriction form
 function onRecipeSubmit(){
     $('#js-recipe-submit').on('submit', function(e){
         e.preventDefault();
-        const food = $('#js-food').val();
+        const food = $('#js-food').val().toLowerCase();
         const restriction = $('#js-health').val();
         const diet = $('#js-diet').val();
         const num = $('#js-results-num').val();
@@ -313,9 +310,6 @@ function submitForms(){
 //CALL ALL FUNCTIONS
 //======================================
 $(submitForms);
-
-
-
 
 
 
