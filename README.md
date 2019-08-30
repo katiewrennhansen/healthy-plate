@@ -7,7 +7,11 @@ I wanted to build an application that would give people the ability to learn mor
 
 ## Site Images
 ### Landing Page
-![Landing Page](/images/cover.jpg)
+![Landing Page](/images/healthyPlate.jpg)
+
+![Info and Nutrition](/images/info.jpg)
+
+![Recipes](/images/recipes.jpg)
 
 
 ## Built With:
