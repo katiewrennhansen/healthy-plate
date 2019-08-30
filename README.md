@@ -19,8 +19,13 @@ I wanted to build an application that would give people the ability to learn mor
  - Nutritional Database API
  
  ## Demo
- Live Demo Here [https://katiewrennhansen.github.io/healthyPlate/]
+ [Live Demo]
  
  
 ## Author
 Katie Hansen - Front-End Development, styling
+
+
+
+
+[Live Demo]: <https://katiewrennhansen.github.io/healthyPlate/>
