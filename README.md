@@ -7,7 +7,7 @@ I wanted to build an application that would give people the ability to learn mor
 
 ## Site Images
 ### Landing Page
-![image](images/healthyPlate.png)
+![images/healthyPlate.png]
 
 
 ## Built With:
@@ -19,7 +19,7 @@ I wanted to build an application that would give people the ability to learn mor
  - Nutritional Database API
  
  ## Demo
- 
+ Live Demo Here [https://katiewrennhansen.github.io/healthyPlate/]
  
  
 ## Author
