@@ -9,8 +9,10 @@ I wanted to build an application that would give people the ability to learn mor
 ### Landing Page
 ![Landing Page](/images/healthyPlate.png)
 
+### Food Banckground and Nutrition Facts
 ![Info and Nutrition](/images/info.png)
 
+### Recipes
 ![Recipes](/images/recipes.png)
 
 
