@@ -7,4 +7,20 @@ I wanted to build an application that would give people the ability to learn mor
 
 ## Site Images
 ### Landing Page
-![image](files/Users/kawrenn/Desktop/Thinkful/Projects/APIs/recipeAPI/images/healthyPlate.png)
+![image](images/healthyPlate.png)
+
+
+## Built With:
+ - HTML
+ - CSS
+ - jQuery
+ - Edamam API
+ - Wikipedia API
+ - Nutritional Database API
+ 
+ ## Demo
+ 
+ 
+ 
+## Author
+Katie Hansen - Front-End Development, styling
