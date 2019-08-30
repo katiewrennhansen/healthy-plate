@@ -143,9 +143,18 @@ input#js-food:focus {
 /*==========
 TITLE
 ==========*/
+.tag {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 100px;
+    text-align: center;
+    font-size: 18px;
+}
+
 .food-name {
     background: none;
 }
+
 
 
 
@@ -247,10 +256,9 @@ p.labels {
 FOOTER
 ==========*/
 footer {
-    /* original 
-    background-color: rgb(172, 220, 110); */
     background-color: rgb(149, 201, 80);
     padding: 30px;
+    margin-top: 50px;
 }
 
 .harvest-icon {
@@ -265,6 +273,11 @@ footer {
 footer p {
     text-align: center;
     margin: 10px 0; 
+    font-size: 18px;
+}
+
+.icon-credit {
+    font-size: 12px;
 }
 
 
@@ -377,6 +390,9 @@ MEDIA QUERIES
     }
     .food-search p {
         font-size: 30px;
+    }
+    .tag {
+        font-size: 20px;
     }
     .h2 {
         font-size: 60px;

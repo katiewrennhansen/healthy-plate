@@ -262,23 +262,18 @@ function fetchRecipeData(food, restriction, diet, num){
 
 //LISTEN ON FORM AND EXECUTE CODE
 //======================================
-// function onReload(){
-//     $(window).on('beforeunload', function(){
-//         $(window).scrollTop(0);
-//     });
-// }
-
 
 //listen on main form
 function onMainSubmit(){
     $('#js-food-search').on('submit', function(e){
         e.preventDefault();
         const food = $('#js-food').val().toLowerCase();
+        $('.tag').addClass('hidden');
+        $('.searched-food').removeClass('hidden');
         makeTitleHtml(food);
         fetchRecipeData(food);
         fetchWikiData(food);
         fetchNutrientNumber(food);
-        // window.scrollTo(0, 600);
         $('#js-recipe-submit').each(function(){
             this.reset();
         });
