@@ -1,5 +1,5 @@
 # Healthy Plate
-Search for a food item and learn it's history and nutrition information as well as recipes you can prepare in your own home
+Search for a food item and learn its history and nutrition information as well as recipes you can prepare in your own home
 
 
 ## Motivation
