@@ -1,6 +1,3 @@
-//fix bug with page load at bottom of page
-
-
 'use strict';
 
  
@@ -59,9 +56,9 @@ function makeWikiHtml(responseJson){
     const data = responseJson.query.pages[pageId];
   
     $('#js-results-info').append(`
-    <img class="wiki-img" src=${data.thumbnail.source}>
-    <p>${data.extract}</p>
-    <a class="wiki-link" href="https://en.wikipedia.org/wiki/${data.title}" target="_blank" alt="image from wikipaedia page of chosen food item">Read More on Wikipedia</a>
+        <img class="wiki-img" src=${data.thumbnail.source}>
+        <p>${data.extract}</p>
+        <a class="wiki-link" href="https://en.wikipedia.org/wiki/${data.title}" target="_blank" alt="image from wikipaedia page of chosen food item">Read More on Wikipedia</a>
     `);
     $('.info').removeClass('hidden');
 }
@@ -120,15 +117,21 @@ function makeRecipeHtml(responseJson, num){
         const calories = Math.round(totalCalories/food[i].recipe.yield);
 
         //create html
-        $('#js-results-list').append(`<li class="recipe">
-        <img class="image" src="${food[i].recipe.image}" alt="image of ${food[i].recipe.label}">
-        <div class="recipe-content">
-        <h4 class="title h4"><a href="${food[i].recipe.url}" target="_blank">${food[i].recipe.label}</a></h4>
-        <p class="source">${food[i].recipe.source}</p>
-        <p class="calories">${calories} calories per serving</p>
-        <p class="labels">${labelArray}</p>
-        <div>
-        </li>`);
+        $('#js-results-list').append(`
+            <li class="recipe">
+                <a class="recipe-card" href="${food[i].recipe.url}" target="_blank">
+                    <div class="image-container">    
+                        <img class="image" src="${food[i].recipe.image}" alt="image of ${food[i].recipe.label}">
+                    </div>    
+                    <div class="recipe-content">
+                        <h4 class="title h4">${food[i].recipe.label}</h4>
+                        <p class="source">${food[i].recipe.source}</p>
+                        <p class="calories">${calories} calories per serving</p>
+                        <p class="labels">${labelArray}</p>
+                    <div>
+                </a>
+            </li>
+        `);
     }
 
 

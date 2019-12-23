@@ -1,11 +1,4 @@
 /*==========
-FIX
-*mobile styles
-==========*/
-
-
-
-/*==========
 GLOBAL STYLES
 ==========*/
 html {
@@ -136,7 +129,6 @@ input#js-food {
 
 input#js-food:focus {
     background: rgba(255, 255, 255, 1.0);
-
 }
 
 
@@ -154,9 +146,6 @@ TITLE
 .food-name {
     background: none;
 }
-
-
-
 
 
 /*==========
@@ -178,10 +167,6 @@ WIKI STYLES
     text-align: left;
 }
 
-
-
-
-
 /*==========
 NUTRITION TABLE STYLES
 ==========*/
@@ -200,9 +185,6 @@ td {
 }
 
 
-
-
-
 /*==========
 RECIPE STYLES
 ==========*/
@@ -212,6 +194,17 @@ RECIPE STYLES
     padding: 10px;
     list-style: none;
     width: 100%;
+    transition: box-shadow 200ms linear;
+}
+
+.recipe:hover {
+    box-shadow: 3px 3px 5px rgb(191, 191, 191);
+    transition: 200ms linear;
+}
+
+.recipe:hover img {
+    transform: scale(1.1);
+    transition: 200ms linear;
 }
 
 label {
@@ -222,19 +215,21 @@ label {
 
 .recipe img {
     width: 100%;
+    transition: 200ms linear;
+}
+
+.image-container {
+    overflow:hidden;
     margin-right: 40px;
+    width: 100%;
 }
 
 p.labels {
     overflow-wrap: break-word;
 }
 
-.title a {
+.title {
     font-size: 25px
-}
-
-.title a:hover {
-    text-decoration: underline;
 }
 
 .source {
@@ -250,6 +245,7 @@ p.labels {
 .recipe-content {
     padding-right: 40px;
 }
+
 
 
 /*==========
@@ -301,6 +297,7 @@ input#submit {
 .diet-submit {
     background-color: rgb(50, 58, 84);  
     border: 1px solid rgb(50, 58, 84);
+    transition: 200ms linear;
 }
 
 .diet-submit:hover, 
@@ -308,17 +305,20 @@ input#submit {
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid rgb(50, 58, 84);
     color: rgb(50, 58, 84);
+    transition: 200ms linear;
 }
 
 input#submit {
     border: 1px solid white;
     background-color: rgba(240, 248, 255, 0);
+    transition: 200ms linear;
 }
 
 input#submit:hover {
     background-color: rgb(50, 58, 84);  
     border: 1px solid rgb(50, 58, 84);
-    color: white
+    color: white;
+    transition: 200ms linear;
 }
 
 /*==========
@@ -428,6 +428,9 @@ MEDIA QUERIES
         display: flex;
         flex-direction: column;
         justify-content: center;
+    }
+    .image-container {
+        width: 300px;
     }
     .recipe-content p {
         font-size: 18px;
